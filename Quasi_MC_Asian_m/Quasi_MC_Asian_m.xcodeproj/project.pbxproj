@@ -1,0 +1,248 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		464FCFAA1CCC162B001F9503 /* Quasi_MC_Asian_m.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 464FCFA91CCC162B001F9503 /* Quasi_MC_Asian_m.cpp */; };
+		464FCFB21CCC168E001F9503 /* sobol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 464FCFB01CCC168E001F9503 /* sobol.cpp */; settings = {ASSET_TAGS = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		464FCFA41CCC162B001F9503 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		464FCFA61CCC162B001F9503 /* Quasi_MC_Asian_m */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Quasi_MC_Asian_m; sourceTree = BUILT_PRODUCTS_DIR; };
+		464FCFA91CCC162B001F9503 /* Quasi_MC_Asian_m.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Quasi_MC_Asian_m.cpp; sourceTree = "<group>"; };
+		464FCFB01CCC168E001F9503 /* sobol.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sobol.cpp; path = ../sobol.cpp; sourceTree = "<group>"; };
+		464FCFB11CCC168E001F9503 /* sobol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sobol.h; path = ../sobol.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		464FCFA31CCC162B001F9503 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		464FCF9D1CCC162B001F9503 = {
+			isa = PBXGroup;
+			children = (
+				464FCFA81CCC162B001F9503 /* Quasi_MC_Asian_m */,
+				464FCFA71CCC162B001F9503 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		464FCFA71CCC162B001F9503 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				464FCFA61CCC162B001F9503 /* Quasi_MC_Asian_m */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		464FCFA81CCC162B001F9503 /* Quasi_MC_Asian_m */ = {
+			isa = PBXGroup;
+			children = (
+				464FCFB11CCC168E001F9503 /* sobol.h */,
+				464FCFB01CCC168E001F9503 /* sobol.cpp */,
+				464FCFA91CCC162B001F9503 /* Quasi_MC_Asian_m.cpp */,
+			);
+			path = Quasi_MC_Asian_m;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		464FCFA51CCC162B001F9503 /* Quasi_MC_Asian_m */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 464FCFAD1CCC162B001F9503 /* Build configuration list for PBXNativeTarget "Quasi_MC_Asian_m" */;
+			buildPhases = (
+				464FCFA21CCC162B001F9503 /* Sources */,
+				464FCFA31CCC162B001F9503 /* Frameworks */,
+				464FCFA41CCC162B001F9503 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Quasi_MC_Asian_m;
+			productName = Quasi_MC_Asian_m;
+			productReference = 464FCFA61CCC162B001F9503 /* Quasi_MC_Asian_m */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		464FCF9E1CCC162B001F9503 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Dongliang Yi";
+				TargetAttributes = {
+					464FCFA51CCC162B001F9503 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+				};
+			};
+			buildConfigurationList = 464FCFA11CCC162B001F9503 /* Build configuration list for PBXProject "Quasi_MC_Asian_m" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 464FCF9D1CCC162B001F9503;
+			productRefGroup = 464FCFA71CCC162B001F9503 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				464FCFA51CCC162B001F9503 /* Quasi_MC_Asian_m */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		464FCFA21CCC162B001F9503 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				464FCFAA1CCC162B001F9503 /* Quasi_MC_Asian_m.cpp in Sources */,
+				464FCFB21CCC168E001F9503 /* sobol.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		464FCFAB1CCC162B001F9503 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		464FCFAC1CCC162B001F9503 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		464FCFAE1CCC162B001F9503 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		464FCFAF1CCC162B001F9503 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		464FCFA11CCC162B001F9503 /* Build configuration list for PBXProject "Quasi_MC_Asian_m" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				464FCFAB1CCC162B001F9503 /* Debug */,
+				464FCFAC1CCC162B001F9503 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		464FCFAD1CCC162B001F9503 /* Build configuration list for PBXNativeTarget "Quasi_MC_Asian_m" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				464FCFAE1CCC162B001F9503 /* Debug */,
+				464FCFAF1CCC162B001F9503 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 464FCF9E1CCC162B001F9503 /* Project object */;
+}
