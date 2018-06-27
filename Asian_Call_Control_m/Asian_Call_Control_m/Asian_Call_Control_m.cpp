@@ -1,11 +1,7 @@
-//
 //  main.cpp
 //  Asian_Call_Control_m
-//
 //  Created by Dongliang Yi on 4/23/16.
 //  Copyright © 2016 Dongliang Yi. All rights reserved.
-//
-
 
 #include <iostream>
 #include <iomanip>
@@ -28,7 +24,6 @@ double _deltaT;
 double value[1000], control[1000];
 double _b,_pho;
 double Expectation_Geometric_Call;
-
 
 // New methods on generating Unit RV!
 #define m1 2147483647
@@ -85,18 +80,15 @@ int Random()
 
 double Uniform01()
 {
-    
     int Z;
     Z=Random();if(Z==0) Z=m1; return (Z*Invmp1);
-    
 }
-
-
 
 double V[15]={1.253314137315500,0.6556795424187985,0.4213692292880545,0.3045902987101033,0.2366523829135607,0.1928081047153158,0.1623776608968675,0.1401041834530502,0.1231319632579329,0.1097872825783083,0.09902859647173193,0.09017567550106468,0.08276628650136917,0.0764757610162485,0.07106958053885211};
 double c=0.918938533204672;
 
-double Min(double a, double b) {
+double Min(double a, double b) 
+{
     return (b < a )? b:a;
 }
 
@@ -131,8 +123,6 @@ double get_cdf(double x)
     return y;
 }
 
-
-
 //Inverse Transform Method
 double a[]={2.50662823884, -18.61500062529, 41.39119773534, -25.44106049637};
 double b[]={-8.47351093090, 23.08336743743, -21.06224101826, 3.13082909833};
@@ -160,11 +150,9 @@ double Beasley_method(double u)
         if (y<0) {
             x=-x;
         }
-        
     }
     return x;
 }
-
 
 double get_gaussian_inverse()
 {
@@ -181,7 +169,6 @@ double max(double a, double b) {
 
 int monte_carlo_initial()
 {
-    
     double Price[_m];
     double RV = get_gaussian_inverse();
     Price[0]=_S0*exp((_r-_q-pow(_sigma,2)*0.5)*_deltaT*(1)+_sigma*sqrt(_deltaT*(1))*RV);
@@ -197,18 +184,14 @@ int monte_carlo_initial()
     Inter_Price = max(Inter_Price-_K, 0);
     control[0]=Inter_Price;
     
-    
     double x = 0;
     for (int j = 0; j<_m; j++) {
         x += Price[j];    }
     x = x/_m;
     x = max(x-_K,0);
-    
     value[0]=x;
     
-    
     for (int i=1; i<1000; i++) {
-        
         RV = get_gaussian_inverse();
         Price[0]=_S0*exp((_r-_q-pow(_sigma,2)*0.5)*_deltaT*(1)+_sigma*sqrt(_deltaT*(1))*RV);
         for (int M = 1; M<_m; M++) {
@@ -228,15 +211,10 @@ int monte_carlo_initial()
             x += Price[j];    }
         x = x/_m;
         x = max(x-_K,0);
-        
         value[i]=x;
-        
     }
     return 1;
 }
-
-
-
 
 int b_Cal()
 {
@@ -253,9 +231,6 @@ int b_Cal()
     long double xy=0.0;
     long double yy=0.0;
     
-    // << "X: " << X;
-    //cout << "::::::::::::::";
-    
     for (int i=0; i<1000; i++) {
         long double temp=control[i]-X;
         long double temp2=value[i]-Y;
@@ -264,15 +239,10 @@ int b_Cal()
         yy+=pow(temp2,2);
         
     }
-    
     _b=xy/xx;
     _pho=xy/sqrt(xx*yy);
-    
     return 1;
-    
 }
-
-
 
 double option_price_call_black_scholes(const double& S,       // spot (underlying) price
                                        const double& K,       // strike (exercise) price,
@@ -287,10 +257,6 @@ double option_price_call_black_scholes(const double& S,       // spot (underlyin
     return S*exp(-q*time)*get_cdf(d1) - K*exp(-r*time)*get_cdf(d2);
 };
 
-
-
-
-
 int Expectation_Geometric_Call_cal()
 {
     double _r_ = _r;
@@ -301,16 +267,10 @@ int Expectation_Geometric_Call_cal()
     double _S0_ =_S0;
     
     Expectation_Geometric_Call = exp(_r_*_T_)*option_price_call_black_scholes( _S0_, _K_, _r_, _sigma_, _T_, _q_);
-    
-    
-    
     //cout << "Geometric: " << Expectation_Geometric_Call<<endl;
     //cout <<";;;;;;;;;;;;;;;;;;;;;;" <<endl;
-    
     return 1;
-    
 }
-
 
 int monte_carlo_inverse(int no_of_trials)
 {
@@ -323,13 +283,11 @@ int monte_carlo_inverse(int no_of_trials)
         Price[M] = Price[M-1]*exp((_r-_q-pow(_sigma,2)*0.5)*_deltaT*(1)+_sigma*sqrt(_deltaT*(1))*RV);
     }
     
-    
     double Inter_Price = pow(Price[0],inv_m);
     for (int M = 1; M<_m; M++) {
         Inter_Price = Inter_Price * pow(Price[M],inv_m);
     }
     Inter_Price = max(Inter_Price - _K, 0);
-    
     
     x = 0;
     for (int j = 0; j<_m; j++) {
@@ -339,10 +297,8 @@ int monte_carlo_inverse(int no_of_trials)
     x = x/_m;
     x = max(x-_K,0) + _b*(Expectation_Geometric_Call-Inter_Price);
     
-    
     //cout << "first Price:" << x<<endl;
     x2 = pow(x, 2);
-    
     
     for (int i=1; i<no_of_trials; i++) {
         RV = get_gaussian_inverse();
@@ -351,13 +307,11 @@ int monte_carlo_inverse(int no_of_trials)
             double RV = get_gaussian_inverse();
             Price[M] = Price[M-1]*exp((_r-_q-pow(_sigma,2)*0.5)*_deltaT*(1)+_sigma*sqrt(_deltaT*(1))*RV);
         }
-        
         double Inter_Price = pow(Price[0],inv_m);
         for (int M = 1; M<_m; M++) {
             Inter_Price = Inter_Price * pow(Price[M],inv_m);
         }
         Inter_Price = max(Inter_Price - _K, 0);
-        
         long double Temp_x = 0;
         for (int j = 0; j<_m; j++) {
             Temp_x += Price[j];
@@ -373,8 +327,6 @@ int monte_carlo_inverse(int no_of_trials)
     return 1;
 }
 
-
-
 int main(int argc, const char * argv[])
 {
     // insert code here...
@@ -386,17 +338,12 @@ int main(int argc, const char * argv[])
     x21= random() % 50000000;
     x22= random() % 60000000;
     
-    
     int no_of_trials =10000;
-    
     sscanf (argv[1], "%d", &_m);
     inv_m = 1/double(_m);
     _deltaT = _T/double(_m);
-
-    
     clock_t start, finish;
     double duration;
-    
     monte_carlo_initial();
     //monte_carlo_inverse_2();
     b_Cal();
@@ -407,12 +354,8 @@ int main(int argc, const char * argv[])
     monte_carlo_inverse(no_of_trials);
     finish = clock();
     
-    
     duration = (double)(finish - start) / CLOCKS_PER_SEC;
-    
-    
     double discount=exp(-_r*_T);
-    
     cout << "Number of trials: " << no_of_trials<<endl;
     cout << "Number of dimensions: " << _m<<endl;
     cout << "-------------------------------" <<endl;
