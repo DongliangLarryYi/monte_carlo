@@ -1,10 +1,7 @@
-//
 //  main.cpp
 //  IE525_Antithetic_MC
-//
 //  Created by Dongliang Yi on 2/10/16.
 //  Copyright © 2016 Dongliang Yi. All rights reserved.
-//
 
 #include <iostream>
 #include <iomanip>
@@ -22,7 +19,6 @@ double _q=0.0232;
 double _sigma=0.2979;
 double _S0=1868.99;
 double _alpha=1.96; //5% significance
-
 
 double get_uniform()
 {
@@ -68,10 +64,8 @@ int monte_carlo(int no_of_trials)
 int main(int argc, const char * argv[])
 {
     // insert code here...
-    
     int no_of_trials;
     sscanf (argv[1], "%d", &no_of_trials);
-    
     monte_carlo(no_of_trials);
     double discount=exp(-_r*_T);
     
@@ -81,7 +75,5 @@ int main(int argc, const char * argv[])
     cout << "The Standard Error is: "<< discount*se<<endl;//here I have discount on the se
     cout << "The 95% CI: ["<<discount*expectation-discount*se*_alpha<<", "<<discount*expectation+discount*se*_alpha<<"]"<<endl;
     cout << "The CI Interval length(cents): "<<200*discount*se*_alpha<<endl;
-    
-    
 }
 
