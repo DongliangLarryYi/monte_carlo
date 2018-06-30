@@ -1,4 +1,5 @@
-//  Pricing asian call option with quasi monte carlo method
+// Pricing asian call option with quasi monte carlo method
+// Inverse method used to generate gaussian random variables
 // Sobol' sequence is used here
 //  Created by Dongliang Yi on 4/23/16.
 //  Copyright © 2016 Dongliang Yi. All rights reserved.
