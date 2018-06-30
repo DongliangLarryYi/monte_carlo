@@ -1,5 +1,5 @@
-//  main.cpp
-//  Quasi_MC_Asian_m
+//  Pricing asian call option with quasi monte carlo method
+// Sobol' sequence is used here
 //  Created by Dongliang Yi on 4/23/16.
 //  Copyright © 2016 Dongliang Yi. All rights reserved.
 
@@ -23,9 +23,8 @@ int _m; // 50 stock price averaging
 double inv_m ;
 double _deltaT ;
 double _alpha=1.96; //5% significancedouble control1[1000],control2[1000];
-//double _alpha=1.96; //5% significance
 
-// New methods on generating Unit RV!
+// Generating Unit RV with L'Ecuyer algorithm on p.52 (Fig 2.3 ) [Paul_Glasserman]_Monte_Carlo_Methods_in_Financial
 #define m1 2147483647
 #define m2 2145483479
 #define a12 63308
@@ -128,6 +127,7 @@ double a[]={2.50662823884, -18.61500062529, 41.39119773534, -25.44106049637};
 double b[]={-8.47351093090, 23.08336743743, -21.06224101826, 3.13082909833};
 double d[]={0.3374754822726147, 0.9761690190917186, 0.1607979714918209, 0.0276438810333863, 0.0038405729373609, 0.0003951896511919, 0.0000321767881768, 0.0000002888167364, 0.0000003960315187};
 
+// Beasley method
 double Beasley_method(double u)
 {
     double y = u-0.5;
@@ -176,6 +176,7 @@ double max(double a, double b) {
     return (b < a )? a:b;
 }
 
+// quasi monte carlo method with sobol sequence
 double Quasi_Monte_Carlo_Sobol(int number, int batch)
 {
     double y, y2;
@@ -192,7 +193,6 @@ double Quasi_Monte_Carlo_Sobol(int number, int batch)
             srand(((int)time(0)*10000*(j+1))*batch);
             U[i]=Uniform01();
         }
-        //cout << U[0]<<endl;
         for (unsigned long long i = 0; i < number; ++i)
         {
             // Print a few dimensions of each point.
@@ -201,14 +201,12 @@ double Quasi_Monte_Carlo_Sobol(int number, int batch)
             double inter = s+U[0] - floor(s+U[0]);
             const double RV = get_gaussian_determin(inter);
             Price[0]=_S0*exp((_r-_q-pow(_sigma,2)*0.5)*_deltaT*(1)+_sigma*sqrt(_deltaT*(1))*RV);
-            //std::cout << "sobol(" << i << ", " << 0 << ") = " << s << std::endl;
             for (unsigned d = 1; d < _m; ++d)
             {
                 const double s = sobol::sample(i+1, d);
                 double inter = s+U[d] - floor(s+U[d]);
                 const double RV = get_gaussian_determin(inter);
                 Price[d]=Price[d-1]*exp((_r-_q-pow(_sigma,2)*0.5)*_deltaT*(1)+_sigma*sqrt(_deltaT*(1))*RV);
-                //std::cout << "sobol(" << i << ", " << d << ") = " << s << std::endl;
             }
             double Temp_x = 0;
             for (int j = 0; j<_m; j++) {
@@ -216,24 +214,20 @@ double Quasi_Monte_Carlo_Sobol(int number, int batch)
             }
             Temp_x = Temp_x/_m;
             Temp_x = max(Temp_x-_K, 0);
-            //cout <<Temp_x<<endl;
             x += Temp_x;
         }
         x = x/number;
-        //cout << x << endl;
         double x2= pow(x, 2);
         y += x;
         y2 +=x2;
     }
     expectation = y/batch;
     se = sqrt(((y2/batch)-pow(expectation, 2))/(batch-1));
-    //cout << (y2/batch)-pow(expectation, 2) <<endl;
     return expectation;
 }
 
 int main(int argc, const char * argv[])
 {
-    // insert code here...
     srand(time(NULL));
     x10= random() % 10000000;
     x11= random() % 20000000;
@@ -247,7 +241,6 @@ int main(int argc, const char * argv[])
     _deltaT = _T/double(_m);
     sscanf (argv[1], "%d", &_m);
     int no_of_batchs =20;
-    //sscanf (argv[2], "%d", &no_of_batchs);
     clock_t start, finish;
     double duration;
     
@@ -257,9 +250,7 @@ int main(int argc, const char * argv[])
     Asian_Price = Quasi_Monte_Carlo_Sobol(no_of_trials, no_of_batchs);
     double discount=exp(-_r*_T);
     finish = clock();
-    //cout << "Price: " << discount*Asian_Price<<endl;
     duration = (double)(finish - start) / CLOCKS_PER_SEC;
-    //double discount=exp(-_r*_T);
     cout << "The dimension is: " << _m<<endl;
     cout << "-------------------------------" <<endl;
     cout << "Total trials: " <<no_of_trials<<" * "<<no_of_batchs<< " = "<<no_of_batchs*no_of_trials<<endl<<endl;
