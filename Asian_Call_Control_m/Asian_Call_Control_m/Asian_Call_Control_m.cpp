@@ -1,5 +1,5 @@
-//  main.cpp
-//  Asian_Call_Control_m
+//  Monte Carlo simulation with control variates
+// Here is an example of pricng asian call options with control variates
 //  Created by Dongliang Yi on 4/23/16.
 //  Copyright © 2016 Dongliang Yi. All rights reserved.
 
@@ -25,7 +25,7 @@ double value[1000], control[1000];
 double _b,_pho;
 double Expectation_Geometric_Call;
 
-// New methods on generating Unit RV!
+// Here is a methods to generate Unit RV!
 #define m1 2147483647
 #define m2 2145483479
 #define a12 63308
@@ -87,6 +87,7 @@ double Uniform01()
 double V[15]={1.253314137315500,0.6556795424187985,0.4213692292880545,0.3045902987101033,0.2366523829135607,0.1928081047153158,0.1623776608968675,0.1401041834530502,0.1231319632579329,0.1097872825783083,0.09902859647173193,0.09017567550106468,0.08276628650136917,0.0764757610162485,0.07106958053885211};
 double c=0.918938533204672;
 
+// return smaller number
 double Min(double a, double b) 
 {
     return (b < a )? b:a;
@@ -123,11 +124,12 @@ double get_cdf(double x)
     return y;
 }
 
-//Inverse Transform Method
+// Inverse Transform Method for generating random variates
 double a[]={2.50662823884, -18.61500062529, 41.39119773534, -25.44106049637};
 double b[]={-8.47351093090, 23.08336743743, -21.06224101826, 3.13082909833};
 double d[]={0.3374754822726147, 0.9761690190917186, 0.1607979714918209, 0.0276438810333863, 0.0038405729373609, 0.0003951896511919, 0.0000321767881768, 0.0000002888167364, 0.0000003960315187};
 
+// Beasley-Springer-Moro algorihm is used to approximate inverse function
 double Beasley_method(double u)
 {
     double y = u-0.5;
@@ -163,6 +165,7 @@ double get_gaussian_inverse()
     return x1;
 }
 
+// return the bigger number
 double max(double a, double b) {
     return (b < a )? a:b;
 }
@@ -216,6 +219,7 @@ int monte_carlo_initial()
     return 1;
 }
 
+// linear regression
 int b_Cal()
 {
     long double X = 0;
@@ -257,6 +261,7 @@ double option_price_call_black_scholes(const double& S,       // spot (underlyin
     return S*exp(-q*time)*get_cdf(d1) - K*exp(-r*time)*get_cdf(d2);
 };
 
+// valuation of geometric call option, which is used as control variate
 int Expectation_Geometric_Call_cal()
 {
     double _r_ = _r;
@@ -267,11 +272,10 @@ int Expectation_Geometric_Call_cal()
     double _S0_ =_S0;
     
     Expectation_Geometric_Call = exp(_r_*_T_)*option_price_call_black_scholes( _S0_, _K_, _r_, _sigma_, _T_, _q_);
-    //cout << "Geometric: " << Expectation_Geometric_Call<<endl;
-    //cout <<";;;;;;;;;;;;;;;;;;;;;;" <<endl;
     return 1;
 }
 
+// monte carlo simulation with control variates (linear regression)
 int monte_carlo_inverse(int no_of_trials)
 {
     double x,x2;
@@ -292,12 +296,9 @@ int monte_carlo_inverse(int no_of_trials)
     x = 0;
     for (int j = 0; j<_m; j++) {
         x += Price[j];
-        //cout << "Price " << j+1 << " : " << Price[j]<<endl;
     }
     x = x/_m;
     x = max(x-_K,0) + _b*(Expectation_Geometric_Call-Inter_Price);
-    
-    //cout << "first Price:" << x<<endl;
     x2 = pow(x, 2);
     
     for (int i=1; i<no_of_trials; i++) {
@@ -322,6 +323,7 @@ int monte_carlo_inverse(int no_of_trials)
         x += Temp_x;
         x2 += Temp_x2;
     }
+    // calculate expected value and standard deviation
     expectation=x/no_of_trials;
     se=sqrt(((x2/no_of_trials)-pow(expectation, 2))/(no_of_trials-1));
     return 1;
@@ -329,7 +331,6 @@ int monte_carlo_inverse(int no_of_trials)
 
 int main(int argc, const char * argv[])
 {
-    // insert code here...
     srand(time(NULL));
     x10= random() % 10000000;
     x11= random() % 20000000;
@@ -345,10 +346,8 @@ int main(int argc, const char * argv[])
     clock_t start, finish;
     double duration;
     monte_carlo_initial();
-    //monte_carlo_inverse_2();
     b_Cal();
     Expectation_Geometric_Call_cal();
-    //monte_carlo_inverse1(no_of_trials);
     
     start = clock();
     monte_carlo_inverse(no_of_trials);
