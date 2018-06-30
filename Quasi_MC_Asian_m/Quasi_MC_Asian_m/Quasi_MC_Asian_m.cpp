@@ -23,7 +23,7 @@ double _S0=2;
 int _m; // 50 stock price averaging
 double inv_m ;
 double _deltaT ;
-double _alpha=1.96; //5% significancedouble control1[1000],control2[1000];
+double _alpha=1.96; //5% significance
 
 // Generating Unit RV with L'Ecuyer algorithm on p.52 (Fig 2.3 ) [Paul_Glasserman]_Monte_Carlo_Methods_in_Financial
 #define m1 2147483647
@@ -155,6 +155,7 @@ double Beasley_method(double u)
     return x;
 }
 
+// get gaussian random variables
 double get_gaussian_inverse()
 {
     double U=Uniform01();
@@ -164,6 +165,7 @@ double get_gaussian_inverse()
     return x1;
 }
 
+// get gaussian random variables with given value in [0,1]
 double get_gaussian_determin(double s)
 {
     double U=s;
@@ -173,6 +175,7 @@ double get_gaussian_determin(double s)
     return x1;
 }
 
+// return bigger number
 double max(double a, double b) {
     return (b < a )? a:b;
 }
